@@ -17,9 +17,6 @@ app.listen(process.env.PORT, () => {
 
 
 
-
-
-
 // app.post('/department', async (req, res) => {
 //     try {
 //         const data = req.body;

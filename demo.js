@@ -5,14 +5,15 @@ let per = require('./routes/app')
 const bodyparser = require('body-parser');
 app.use(bodyparser.json());
 
-app.use('/', per);
+//midelware function
+const logreq = (req, res, next) => {
+    console.log(`${new Date().toLocaleString()} Request made to:${req.originalUrl}`);
+    next();
+}
 
-app.get('/', function (req, res) {
-    res.send("welcome vijay");
-})
+app.use('/', logreq, per);//here 'logreq' is middleware that apply all api's
 
-// it use testing perpuse
-//it not
+
 
 app.listen(process.env.PORT, () => {
     require('./db')

@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config(); 
 const express = require('express');
 let app = express();
 let per = require('./routes/app')

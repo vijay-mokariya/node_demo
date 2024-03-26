@@ -1,4 +1,4 @@
-require('dotenv').config(); 
+require('dotenv').config();
 const express = require('express');
 let app = express();
 let per = require('./routes/app')
@@ -7,6 +7,9 @@ app.use(bodyparser.json());
 
 app.use('/', per);
 
+app.get('/', function (req, res) {
+    res.send("welcome vijay");
+})
 
 // it use testing perpuse
 //it not

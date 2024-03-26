@@ -7,8 +7,6 @@ const mongoose = require('mongoose');
 //     try{} catch(error) {console}
 // }
 mongoose.connect(process.env.MONGO_URL)
-
-
 // module.exports = db;
 
 const db = mongoose.connection;

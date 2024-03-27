@@ -3,16 +3,26 @@ const express = require('express');
 let app = express();
 let per = require('./routes/app')
 const bodyparser = require('body-parser');
+const person=require('./models/Demoperson')
+
+
+
 app.use(bodyparser.json());
 
-//midelware function
-const logreq = (req, res, next) => {
-    console.log(`${new Date().toLocaleString()} Request made to:${req.originalUrl}`);
-    next();
-}
+// //midelware function
+// const logreq = (req, res, next) => {
+//     console.log(`${new Date().toLocaleString()} Request made to:${req.originalUrl}`);
+//     next();//it is a callback function while we complete entire middelware process than we can move next middleware or routes
+// }
 
-app.use('/', logreq, per);//here 'logreq' is middleware that apply all api's
+app.use('/',  per);//here 'logreq' is middleware that apply all api's
 
+
+
+
+// app.get('/',function(req,res){
+//     res.send("welcome to our hotel vijay mokariya")
+// })
 
 
 app.listen(process.env.PORT, () => {
@@ -39,7 +49,7 @@ app.listen(process.env.PORT, () => {
 //     }
 // })
 
-
+ 
 // join query in mongodb
 
 // app.get('/perdep', async (req, res) => {

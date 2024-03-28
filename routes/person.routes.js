@@ -7,9 +7,9 @@ const authuser = passport.authenticate('local', { session: false });
 
 
 app.get('/', authuser, require('../controller/person/display'));
-app.get('/:id', authuser, require('../controller/person/disperson'));
+app.get('/:id', require('../controller/person/disperson'));
 app.post('/', require('../controller/person/create'));
-app.put('/:id', authuser, require('../controller/person/update'));
-app.delete('/:id', authuser, require('../controller/person/deleteperson'));
+app.put('/:id', require('../controller/person/update'));
+app.delete('/:id', require('../controller/person/deleteperson'));
 
 module.exports = app; 

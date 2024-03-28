@@ -37,18 +37,17 @@ personschema.pre('save', async function (next) {
     if (!person.isModified('password')) return next();
     try {
         const salt = await bcrypt.genSalt(10);
-        const hashpassword = await bcrypt.hashpassword(person.password, salt);
+        const hashpassword = await bcrypt.hash(person.password, salt);
         person.password = hashpassword;
         next();
     } catch (error) {
         return next(error);
     }
-})
+}) 
 
-
-personschema.methods.comparepassword=async function(candidatepassword){
+personschema.methods.comparepassword = async function (candidatepassword) {
     try {
-        const ismatch=await bcrypt.compare(candidatepassword,this.password);
+        const ismatch = await bcrypt.compare(candidatepassword, this.password);
         return ismatch;
     } catch (error) {
         throw error;

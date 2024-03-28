@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const personschema = mongoose.Schema({
+const personschema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -43,7 +43,28 @@ personschema.pre('save', async function (next) {
     } catch (error) {
         return next(error);
     }
-}) 
+})
+
+
+// //Change User Password
+// personschema.pre('updateOne', async (req, res) => {
+//     const { password, password_confirmation } = req.body
+//     if (password && password_confirmation) {
+//         if (password !== password_confirmation) {
+//             res.send({ status: "failed", message: "password and Confirmation password does not match" });
+//         } else {
+//             const salt = await bcrypt.genSalt(10);
+//             const newhaspassword = await bcrypt.hash(password, salt);
+//             await userModel.findByIdAndUpdate(req.user._id, { $set: { password: newhaspassword } })
+//             res.send({ status: "success", message: "Password Change Successfully" });
+//         }
+//     } else {
+//         res.send({ status: "failed", message: "All feilds Are required" });
+//     }
+// })
+
+
+
 
 personschema.methods.comparepassword = async function (candidatepassword) {
     try {

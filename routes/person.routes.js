@@ -12,4 +12,5 @@ app.post('/', require('../controller/person/create'));
 app.put('/:id', require('../controller/person/update'));
 app.delete('/:id', require('../controller/person/deleteperson'));
 
-module.exports = app; 
+module.exports = app;
+//export default app;

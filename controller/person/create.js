@@ -1,5 +1,6 @@
 const person = require('../../models/Demoperson');
 const bcrypt = require('bcrypt');
+const { jwtAuthMiddleware, generatetoken } = require('../../jwt');
 
 const create = async (req, res) => {
     try {
@@ -13,7 +14,10 @@ const create = async (req, res) => {
 
         const responce = await newperson.save();
         console.log("data saved");
-        res.status(200).json(responce);
+
+        const token = generatetoken(responce.username);
+        console.log("token is:- ", token);
+        res.status(200).json({ responce: responce, token: token });
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: 'Internal server error' });
@@ -39,11 +43,4 @@ const create = async (req, res) => {
 // })
 
 module.exports = create;
-
-
-
-
-
-
-
 

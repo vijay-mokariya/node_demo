@@ -12,7 +12,6 @@ const login = async (req, res) => {
         }
 
         const payload = {
-            id: user.id,
             username: user.username
         }
 
@@ -25,4 +24,4 @@ const login = async (req, res) => {
     }
 }
 
-module.exports=login;
+module.exports = login;

@@ -6,9 +6,8 @@ const bodyparser = require('body-parser');
 const person=require('./models/Demoperson')
 
 
-
 app.use(bodyparser.json());
-
+app.use(bodyparser.urlencoded({ extended: true }));
 // //midelware function
 // const logreq = (req, res, next) => {
 //     console.log(`${new Date().toLocaleString()} Request made to:${req.originalUrl}`);
@@ -16,9 +15,6 @@ app.use(bodyparser.json());
 // }
 
 app.use('/',  per);//here 'logreq' is middleware that apply all api's
-
-
-
 
 // app.get('/',function(req,res){
 //     res.send("welcome to our hotel vijay mokariya")

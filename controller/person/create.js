@@ -5,25 +5,35 @@ const { jwtAuthMiddleware, generatetoken } = require('../../jwt');
 const create = async (req, res) => {
     try {
         const data = req.body;
-
-        const newperson = new person(data);
-
+        //const newperson = new person(data);
+        console.log(data.password)
         const salt = await bcrypt.genSalt(10);
-        const hashpassword = await bcrypt.hash(newperson.password, salt);
-        newperson.password = hashpassword;
-
+        const hashpassword = await bcrypt.hash(req.body.password, salt);
+        const newperson = new person({
+            name: req.body.name,
+            age: req.body.age,
+            username: req.body.username,
+            password: hashpassword,
+            profile: req.file.filename
+        })
+        // const responce = await registerUser.save();
+        //newperson.password = hashpassword;
         const responce = await newperson.save();
         console.log("data saved");
-
-        const token = generatetoken(responce.username);
-        console.log("token is:- ", token);
-        res.status(200).json({ responce: responce, token: token });
+        res.status(200).json(responce);
     } catch (error) {
         console.log(error);
         res.status(500).json({ error: 'Internal server error' });
-
     }
 }
+module.exports = create;
+
+
+
+
+
+
+
 
 // hashing password store using pre command
 
@@ -42,5 +52,18 @@ const create = async (req, res) => {
 //     }
 // })
 
-module.exports = create;
+
+
+
+
+
+
+
+
+
+
+
+
+
+//  const registered = await User.create({ ...req.body, profileimage: req.file.filename, password: hashPassword });
 

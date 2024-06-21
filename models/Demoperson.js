@@ -16,6 +16,9 @@ const personschema = new mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    profile: {
+        type: String,
     }
 
     // that is use for give the reference
@@ -44,4 +47,3 @@ personschema.methods.comparepassword = async function (candidatepassword) {
 
 const person = mongoose.model('personexampla', personschema);
 module.exports = person;
- 

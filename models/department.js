@@ -8,8 +8,14 @@ const departmentschema = mongoose.Schema({
 },
     {
         timestamps: true
+
     }
 )
 
 const department1 = mongoose.model('department', departmentschema);
 module.exports = department1;
+
+
+
+
+//https://www.youtube.com/watch?v=70H_7C0kMbI
